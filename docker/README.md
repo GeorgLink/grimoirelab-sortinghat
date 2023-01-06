@@ -17,13 +17,19 @@ server on `localhost:8000`. You can access it with credentials `admin:admin`.
 Modify `SORTINGHAT_SUPERUSER_*` env vars, if you want different values.
 
 ```
-$ docker network create sh
+docker network create sh
+```
 
-$ docker run --rm --net sh --name mysqldb -e 'MYSQL_ALLOW_EMPTY_PASSWORD=yes' mysql:8.0.22
+```
+docker run --rm --net sh --name mysqldb -e 'MYSQL_ALLOW_EMPTY_PASSWORD=yes' mysql:8.0.22
+```
 
-$ docker run --rm --net sh --name redisdb redis:latest redis-server --appendonly yes
+```
+docker run --rm --net sh --name redisdb redis:latest redis-server --appendonly yes
+```
 
-$ docker run --rm --net sh -p 8000:8000 --name sortinghat \
+```
+docker run --rm --net sh -p 8000:8000 --name sortinghat \
     -e 'SORTINGHAT_SECRET_KEY=secret' \
     -e 'SORTINGHAT_DB_HOST=mysqldb' \
     -e 'SORTINGHAT_REDIS_HOST=redisdb' \
@@ -36,7 +42,7 @@ $ docker run --rm --net sh -p 8000:8000 --name sortinghat \
 To run a worker that will execute jobs, use the next command:
 
 ```
-$ docker run --rm --net sh --name sortinghat-worker-1 \
+docker run --rm --net sh --name sortinghat-worker-1 \
     -e 'SORTINGHAT_SECRET_KEY=secret' \
     -e 'SORTINGHAT_DB_HOST=mysqldb' \
     -e 'SORTINGHAT_REDIS_HOST=redisdb' \
@@ -50,17 +56,18 @@ The image requires that the SortingHat Python package is built and ready
 in `dist` directory. You can build a new package running the next commands:
 
 ```
-$ yarn --cwd ui build
-$ poetry build
+yarn --cwd ui build
+poetry build
 ```
 
 Once the package is ready, to build the images (server and worker),
 run `docker build` command from the repository root directory.
 
 ```
-$ docker build -f docker/server.dockerfile -t grimoirelab/sortinghat .
-
-$ docker build -f docker/worker.dockerfile -t grimoirelab/sortinghat-worker .
+docker build -f docker/server.dockerfile -t grimoirelab/sortinghat .
+```
+```
+docker build -f docker/worker.dockerfile -t grimoirelab/sortinghat-worker .
 ```
 
 

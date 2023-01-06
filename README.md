@@ -35,8 +35,9 @@ whole list of dependencies in [pyproject.toml](pyproject.toml) file.
 
 Clone the repository, and change to the `muggle` branch
 ```
-$ git clone https://github.com/chaoss/grimoirelab-sortinghat
-$ git checkout muggle
+git clone https://github.com/chaoss/grimoirelab-sortinghat
+cd grimoirelab-sortinghat
+git checkout muggle
 ```
 
 ### Backend
@@ -59,13 +60,13 @@ install these packages in your system with the next commands:
 * **MySQL**
 
 ```
-$ apt install libmysqlclient-dev
+apt install libmysqlclient-dev
 ```
 
 * **MariaDB**
 
 ```
-$ apt install libmariadbclient-dev
+apt install libmariadbclient-dev
 ```
 
 #### Installation and configuration
@@ -78,12 +79,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-SECRET_KEY
 
 Install the required dependencies (this will also create a virtual environment).
 ```
-$ poetry install
+poetry install
 ```
 
 Activate the virtual environment:
 ```
-$ poetry shell
+poetry shell
 ```
 
 Database creation, apply migrations and fixtures, deploy static files,
@@ -123,15 +124,15 @@ for more information.
 
 Install the required dependencies
 ```
-$ cd ui/
-$ yarn install
+cd ui/
+yarn install
 ```
 
 #### Running the frontend
 
 Run SortingHat frontend Vue app:
 ```
-$ yarn serve
+yarn serve
 ```
 
 
@@ -157,24 +158,24 @@ In order to run the service for the first time, you need to execute the next com
 
 Build the UI interface:
 ```
-$ cd ui
-$ yarn build
+cd ui
+yarn build
 ```
 
 Set a secret key:
 ```
-$ export SORTINGHAT_SECRET_KEY="my-secret-key"
+export SORTINGHAT_SECRET_KEY="my-secret-key"
 ```
 
 Set up the service creating a database, deploying static files,
 and adding a superuser to access the app:
 ```
-$ sortinghat-admin --config sortinghat.config.settings setup
+sortinghat-admin --config sortinghat.config.settings setup
 ```
 
 Run the server (use `--dev` flag for `development` mode):
 ```
-$ sortinghatd --config sortinghat.config.settings
+sortinghatd --config sortinghat.config.settings
 ```
 
 By default, this runs a WSGI server in `127.0.0.1:9314`. The `--dev` flag runs
@@ -183,7 +184,7 @@ a server in `127.0.0.1:8000`.
 You will also need to run some workers to execute tasks like recommendations
 or affiliation. To start a worker run the command:
 ```
-$ sortinghatw --config sortinghat.config.settings
+sortinghatw --config sortinghat.config.settings
 ```
 
 
@@ -238,8 +239,8 @@ frontend and backend.
 
 #### Frontend test suite
 ```
-$ cd ui/
-$ yarn test:unit
+cd ui/
+yarn test:unit
 ```
 
 ## License
